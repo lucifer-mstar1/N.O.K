@@ -1,29 +1,42 @@
 from pathlib import Path
 import os
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
+
 load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "change-me-unsafe")
-
-# Default to True for local development.
-# In production, set DJANGO_DEBUG=False.
+# -----------------------------------------------------------------------------
+# Core
+# -----------------------------------------------------------------------------
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "")
 DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
+if not DEBUG and not SECRET_KEY:
+    raise ImproperlyConfigured("DJANGO_SECRET_KEY is required when DEBUG=False")
 
+# Render/Prod: set DJANGO_ALLOWED_HOSTS="n-o-k.onrender.com"
+raw_hosts = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").strip()
+ALLOWED_HOSTS = [h.strip() for h in raw_hosts.split(",") if h.strip()]
+
+# -----------------------------------------------------------------------------
+# Apps / Auth
+# -----------------------------------------------------------------------------
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.sites",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
+
     "accounts",
     "wallet",
     "courses",
@@ -31,7 +44,10 @@ INSTALLED_APPS = [
     "aitutor",
 ]
 
-SITE_ID = 1
+SITE_ID = int(os.environ.get("DJANGO_SITE_ID", "1"))
+
+AUTH_USER_MODEL = "accounts.User"
+
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
@@ -40,6 +56,7 @@ AUTHENTICATION_BACKENDS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -71,6 +88,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "nok.wsgi.application"
 
+# -----------------------------------------------------------------------------
+# Database (SQLite is OK for free Render, but data resets unless you use a Disk)
+# -----------------------------------------------------------------------------
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -78,16 +98,17 @@ DATABASES = {
     }
 }
 
+# -----------------------------------------------------------------------------
+# Password validation
+# -----------------------------------------------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-        "OPTIONS": {"min_length": 8},
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", "OPTIONS": {"min_length": 8}},
 ]
 
+# -----------------------------------------------------------------------------
+# i18n
+# -----------------------------------------------------------------------------
 LANGUAGE_CODE = "en"
 TIME_ZONE = "Asia/Tashkent"
 USE_I18N = True
@@ -98,58 +119,60 @@ LANGUAGES = [
     ("ru", "Русский"),
     ("uz", "Oʻzbek"),
 ]
-
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
-# Keep users logged in after refresh and across sessions (tunable via env if needed)
+# -----------------------------------------------------------------------------
+# Sessions
+# -----------------------------------------------------------------------------
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_AGE = int(os.environ.get("DJANGO_SESSION_COOKIE_AGE", str(60 * 60 * 24 * 7)))  # 7 days
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
-# Email verification (defaults are safe for local dev; set SMTP env vars for production)
+# -----------------------------------------------------------------------------
+# Email (Render env vars mapping)
+# -----------------------------------------------------------------------------
 EMAIL_BACKEND = os.environ.get(
     "DJANGO_EMAIL_BACKEND",
     "django.core.mail.backends.console.EmailBackend",
 )
-EMAIL_TIMEOUT = int(os.getenv("EMAIL_TIMEOUT", "10"))
-DEFAULT_FROM_EMAIL = os.environ.get("DJANGO_DEFAULT_FROM_EMAIL", "N.O.K <no-reply@nok.local>")
+EMAIL_HOST = os.getenv("DJANGO_EMAIL_HOST", "")
+EMAIL_PORT = int(os.getenv("DJANGO_EMAIL_PORT", "587"))
+EMAIL_USE_TLS = os.getenv("DJANGO_EMAIL_USE_TLS", "True") == "True"
+EMAIL_HOST_USER = os.getenv("DJANGO_EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("DJANGO_EMAIL_HOST_PASSWORD", "")
+EMAIL_TIMEOUT = int(os.getenv("DJANGO_EMAIL_TIMEOUT", "10"))
 
-# Optional SMTP settings (only used if you set EMAIL_BACKEND to SMTP)
-EMAIL_HOST = os.environ.get("DJANGO_EMAIL_HOST", "")
-EMAIL_PORT = int(os.environ.get("DJANGO_EMAIL_PORT", "587"))
-EMAIL_HOST_USER = os.environ.get("DJANGO_EMAIL_HOST_USER", "")
-EMAIL_HOST_PASSWORD = os.environ.get("DJANGO_EMAIL_HOST_PASSWORD", "")
-EMAIL_USE_TLS = os.environ.get("DJANGO_EMAIL_USE_TLS", "True") == "True"
+DEFAULT_FROM_EMAIL = os.getenv("DJANGO_DEFAULT_FROM_EMAIL", EMAIL_HOST_USER or "no-reply@example.com")
 
+# -----------------------------------------------------------------------------
+# Static files
+# -----------------------------------------------------------------------------
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+# Django 5.x правильный способ вместо STATICFILES_STORAGE:
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+}
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-AUTH_USER_MODEL = "accounts.User"
-
-SITE_ID = int(os.environ.get("DJANGO_SITE_ID", "1"))
-
-AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
-
-# Allauth settings
-ACCOUNT_LOGIN_METHODS = {'email', 'username'}
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+# -----------------------------------------------------------------------------
+# Allauth
+# -----------------------------------------------------------------------------
+ACCOUNT_LOGIN_METHODS = {"email", "username"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_ADAPTER = "accounts.adapters.AccountAdapter"
+
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
-GOOGLE_OAUTH_CLIENT_ID = os.environ.get("GOOGLE_OAUTH_CLIENT_ID")
-GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get("GOOGLE_OAUTH_CLIENT_SECRET")
+GOOGLE_OAUTH_CLIENT_ID = os.environ.get("GOOGLE_OAUTH_CLIENT_ID", "")
+GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get("GOOGLE_OAUTH_CLIENT_SECRET", "")
+
 GOOGLE_OAUTH_ENABLED = bool(GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET)
 if GOOGLE_OAUTH_ENABLED:
     SOCIALACCOUNT_PROVIDERS = {
@@ -164,24 +187,36 @@ if GOOGLE_OAUTH_ENABLED:
         }
     }
 
+# -----------------------------------------------------------------------------
+# Login URLs
+# -----------------------------------------------------------------------------
 LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "landing"
 
+# -----------------------------------------------------------------------------
+# Security / Proxy (only secure cookies in production)
+# -----------------------------------------------------------------------------
+CSRF_TRUSTED_ORIGINS = []
+raw_csrf = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "").strip()
+if raw_csrf:
+    CSRF_TRUSTED_ORIGINS.extend([x.strip() for x in raw_csrf.split(",") if x.strip()])
+
+# Common defaults
+CSRF_TRUSTED_ORIGINS.append("https://n-o-k.onrender.com")
+
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS.extend(["http://localhost:8000", "http://127.0.0.1:8000"])
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+else:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    USE_X_FORWARDED_HOST = True
+
+# -----------------------------------------------------------------------------
+# Other
+# -----------------------------------------------------------------------------
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
-
-
-# Show/enable Google OAuth button only when creds exist
-SOCIALACCOUNT_GOOGLE_ENABLED = bool(os.environ.get('GOOGLE_CLIENT_ID') and os.environ.get('GOOGLE_CLIENT_SECRET'))
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://n-o-k.onrender.com",
-]
-if os.environ.get("DJANGO_DEBUG", "False") == "True":
-    CSRF_TRUSTED_ORIGINS.append("http://localhost:8000")
-    CSRF_TRUSTED_ORIGINS.append("http://127.0.0.1:8000")
-
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-USE_X_FORWARDED_HOST = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
