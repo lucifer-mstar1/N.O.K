@@ -96,7 +96,6 @@ def resend_verification(request):
 
     return redirect("accounts:verification_sent")
 
-
 def _send_verification_email(request, user: User) -> str:
     uid = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)
@@ -113,10 +112,16 @@ def _send_verification_email(request, user: User) -> str:
     )
 
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", None)
+
+    # ✅ Never let email sending crash the request (Render SMTP often not configured)
     if user.email:
-        send_mail(subject, message, from_email, [user.email], fail_silently=True)
+        try:
+            send_mail(subject, message, from_email, [user.email], fail_silently=True)
+        except Exception:
+            pass
 
     return verify_url
+
 
 
 @login_required

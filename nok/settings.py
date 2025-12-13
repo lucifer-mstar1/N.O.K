@@ -111,6 +111,7 @@ EMAIL_BACKEND = os.environ.get(
     "DJANGO_EMAIL_BACKEND",
     "django.core.mail.backends.console.EmailBackend",
 )
+EMAIL_TIMEOUT = int(os.getenv("EMAIL_TIMEOUT", "10"))
 DEFAULT_FROM_EMAIL = os.environ.get("DJANGO_DEFAULT_FROM_EMAIL", "N.O.K <no-reply@nok.local>")
 
 # Optional SMTP settings (only used if you set EMAIL_BACKEND to SMTP)
@@ -179,3 +180,8 @@ CSRF_TRUSTED_ORIGINS = [
 if os.environ.get("DJANGO_DEBUG", "False") == "True":
     CSRF_TRUSTED_ORIGINS.append("http://localhost:8000")
     CSRF_TRUSTED_ORIGINS.append("http://127.0.0.1:8000")
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
