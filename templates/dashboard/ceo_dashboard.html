@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-2">CEO control center – {{ user.display_name }}</h2>
+<p class="text-secondary small mb-3">
+  You are designing the whole learning ecosystem. Your job is to make studying feel like a game: clear goals,
+  fair rewards, friendly competition and instant help.
+</p>
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="nok-card p-3 h-100">
+      <div class="small text-secondary mb-1">Events & tournaments</div>
+      <p class="small text-secondary">
+        Create tournaments, weekly stand-ups and learning challenges via the admin panel.
+        Every event is a reason for students to come back.
+      </p>
+      <a href="/admin/activities/activity/" class="btn btn-success btn-sm">Manage events</a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="nok-card p-3 h-100">
+      <div class="small text-secondary mb-1">Platform health</div>
+      <p class="small text-secondary">
+        Check teacher activity, student signups and transaction logs in the admin panel.
+        Watch what truly keeps people engaged.
+      </p>
+      <a href="/admin/" class="btn btn-outline-light btn-sm">Admin dashboard</a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="nok-card p-3 h-100">
+      <div class="small text-secondary mb-1">Engagement strategy</div>
+      <p class="small text-secondary">
+        People stay where they feel progress, community and recognition.
+        Use badges, streaks, tournaments and AI teacher reminders to keep the learning loop alive.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

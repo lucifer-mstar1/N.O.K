@@ -1,0 +1,426 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: NOK\n"
+"Language: ru\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/base.html
+msgid "Network of Knowledge"
+msgstr "Сеть знаний"
+
+msgid "Dashboard"
+msgstr "Панель"
+
+msgid "Wallet"
+msgstr "Кошелёк"
+
+msgid "Courses"
+msgstr "Курсы"
+
+msgid "Events"
+msgstr "События"
+
+msgid "AI Teacher"
+msgstr "ИИ-Учитель"
+
+msgid "Log out"
+msgstr "Выйти"
+
+msgid "Sign in"
+msgstr "Войти"
+
+msgid "Join for free"
+msgstr "Зарегистрироваться"
+
+msgid "After registration we will send you a verification email. Activate your account to sign in."
+msgstr "После регистрации мы отправим письмо для подтверждения. Активируйте аккаунт, чтобы войти."
+
+msgid "Check your email"
+msgstr "Проверьте почту"
+
+msgid "We sent you a verification link. Open it to activate your account, then you can sign in."
+msgstr "Мы отправили ссылку для подтверждения. Откройте её, чтобы активировать аккаунт, затем войдите."
+
+msgid "Tip:"
+msgstr "Совет:"
+
+msgid "If you don't see it, check Spam/Junk."
+msgstr "Если письма нет, проверьте Спам."
+
+msgid "Your email"
+msgstr "Ваш email"
+
+msgid "Resend"
+msgstr "Отправить снова"
+
+msgid "Back to sign in"
+msgstr "Назад ко входу"
+
+msgid "Invalid or expired link"
+msgstr "Ссылка недействительна или истекла"
+
+msgid "This verification link is not valid anymore. You can request a new one below."
+msgstr "Эта ссылка больше не действует. Запросите новую ниже."
+
+msgid "Send new link"
+msgstr "Отправить новую ссылку"
+
+msgid "Back to home"
+msgstr "На главную"
+
+msgid "New here?"
+msgstr "Впервые здесь?"
+
+msgid "Create an account"
+msgstr "Создать аккаунт"
+
+msgid "If you just registered, verify your email first."
+msgstr "Если вы только зарегистрировались, сначала подтвердите email."
+
+msgid "Email verified. You can sign in now."
+msgstr "Email подтверждён. Теперь вы можете войти."
+
+msgid "Please enter your email."
+msgstr "Введите ваш email."
+
+msgid "If an inactive account exists for that email, we sent a verification link."
+msgstr "Если для этого email есть неактивный аккаунт, мы отправили ссылку для подтверждения."
+
+msgid "✅ Verify your N.O.K account"
+msgstr "✅ Подтвердите ваш аккаунт N.O.K"
+
+msgid "Hi!"
+msgstr "Здравствуйте!"
+
+msgid "Please verify your email to activate your N.O.K account:"
+msgstr "Подтвердите email, чтобы активировать аккаунт N.O.K:"
+
+msgid "If you did not create an account, you can ignore this email."
+msgstr "Если вы не создавали аккаунт, просто игнорируйте это письмо."
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Built for learners in Uzbekistan"
+msgstr "Создано для учащихся Узбекистана"
+
+#: templates/landing.html
+msgid "Learn faster. Stay focused. Win confidence."
+msgstr "Учись быстрее. Сохраняй фокус. Расти в уверенности."
+
+msgid "A smarter way to learn"
+msgstr "Умный способ учиться"
+
+msgid "with real teachers"
+msgstr "с настоящими преподавателями"
+
+msgid "and a 24/7 AI tutor."
+msgstr "и ИИ-тутором 24/7."
+
+msgid "N.O.K helps students in Uzbekistan study with structure: clear course parts, progress tracking, and a wallet that makes buying lessons easy."
+msgstr "N.O.K помогает ученикам Узбекистана учиться структурно: понятные части курса, отслеживание прогресса и кошелёк для удобной оплаты."
+
+msgid "Start free"
+msgstr "Начать бесплатно"
+
+msgid "Explore courses"
+msgstr "Смотреть курсы"
+
+msgid "Instant access"
+msgstr "Мгновенный доступ"
+
+msgid "Payme & Click ready (simulation)"
+msgstr "Payme и Click готовы (симуляция)"
+
+msgid "Mobile-first design"
+msgstr "Удобно на телефоне"
+
+msgid "Today’s learning plan"
+msgstr "План на сегодня"
+
+msgid "15 minutes"
+msgstr "15 минут"
+
+msgid "Momentum"
+msgstr "Импульс"
+
+msgid "Small steps feel easy, but they build big results."
+msgstr "Маленькие шаги даются легко — и дают большие результаты."
+
+msgid "Streak"
+msgstr "Серия"
+
+msgid "Your progress"
+msgstr "Ваш прогресс"
+
+msgid "Level"
+msgstr "Уровень"
+
+msgid "People continue when they can see progress."
+msgstr "Люди продолжают, когда видят прогресс."
+
+msgid "so'm"
+msgstr "сум"
+
+msgid "Top up via Payme/Click and unlock parts in seconds."
+msgstr "Пополните через Payme/Click и откройте части за секунды."
+
+msgid "AI Tutor"
+msgstr "ИИ-тютор"
+
+msgid "Ask questions instead of quitting when you feel stuck."
+msgstr "Задавайте вопросы вместо того, чтобы бросать при трудностях."
+
+msgid "Try AI"
+msgstr "Попробовать ИИ"
+
+msgid "Psychology tip: we use clear steps, progress cues, and quick wins to keep motivation high."
+msgstr "Психология: ясные шаги, подсказки прогресса и быстрые победы поддерживают мотивацию."
+
+msgid "Clear structure"
+msgstr "Понятная структура"
+
+msgid "Courses are split into parts so you can buy only what you need and feel constant progress."
+msgstr "Курсы разделены на части — покупайте только нужное и ощущайте постоянный прогресс."
+
+msgid "Fast checkout"
+msgstr "Быстрая оплата"
+
+msgid "Wallet top-ups with Payme & Click flow (simulation). Reduce friction: less thinking, more learning."
+msgstr "Пополнение кошелька через Payme/Click (симуляция). Меньше трения — меньше сомнений, больше обучения."
+
+msgid "Social proof"
+msgstr "Доверие"
+
+msgid "Reviews, teacher profiles, and recent activity build trust before purchase."
+msgstr "Отзывы, профили преподавателей и активность создают доверие до покупки."
+
+msgid "Ready to start?"
+msgstr "Готовы начать?"
+
+msgid "Join free today. Your first progress streak starts immediately."
+msgstr "Присоединяйтесь бесплатно — серия прогресса начинается сразу."
+
+msgid "Create account"
+msgstr "Создать аккаунт"
+
+#: templates/wallet/wallet.html
+msgid "Top up in seconds, then unlock lessons without friction."
+msgstr "Пополняйте за секунды и открывайте уроки без лишних шагов."
+
+msgid "Balance"
+msgstr "Баланс"
+
+msgid "Referral"
+msgstr "Реферал"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Invite friends — when they buy Z, you get a bonus."
+msgstr "Приглашайте друзей — когда они покупают Z, вы получаете бонус."
+
+msgid "Top up"
+msgstr "Пополнить"
+
+msgid "Amount (UZS)"
+msgstr "Сумма (UZS)"
+
+msgid "Pay with Payme"
+msgstr "Оплатить через Payme"
+
+msgid "Pay with Click"
+msgstr "Оплатить через Click"
+
+msgid "Tip: lower friction increases conversion. Show the easiest button first."
+msgstr "Совет: меньше трения — больше конверсии. Покажите самый простой вариант первым."
+
+msgid "Convert"
+msgstr "Конвертировать"
+
+msgid "Convert UZS → Z"
+msgstr "Конвертировать UZS → Z"
+
+msgid "Withdraw"
+msgstr "Вывести"
+
+msgid "Withdraw Z → UZS"
+msgstr "Вывод Z → UZS"
+
+msgid "Recent transactions"
+msgstr "Последние операции"
+
+msgid "No transactions yet."
+msgstr "Операций пока нет."
+
+#: templates/wallet/payment_simulate.html
+msgid "Payment simulation"
+msgstr "Симуляция оплаты"
+
+msgid "This is a safe demo flow. Replace it with real Payme/Click redirect + callbacks when you have API keys."
+msgstr "Это безопасный демо-поток. Когда будут API-ключи, замените на реальный редирект Payme/Click и колбэки."
+
+msgid "Top up amount"
+msgstr "Сумма пополнения"
+
+msgid "Order"
+msgstr "Заказ"
+
+msgid "Pay now"
+msgstr "Оплатить"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Psychology: remove uncertainty — clear amount, clear action, clear confirmation."
+msgstr "Психология: уберите неопределённость — понятная сумма, действие и подтверждение."
+
+#: templates/courses/course_list.html
+msgid "Pick a subject, start small, and build a streak."
+msgstr "Выберите предмет, начните с малого и набирайте серию."
+
+msgid "Search by subject"
+msgstr "Поиск по предмету"
+
+msgid "Search"
+msgstr "Искать"
+
+msgid "Teacher"
+msgstr "Преподаватель"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "No courses found."
+msgstr "Курсы не найдены."
+
+#: templates/courses/course_detail.html
+msgid "Average rating"
+msgstr "Средняя оценка"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Course parts"
+msgstr "Части курса"
+
+msgid "videos"
+msgstr "видео"
+
+msgid "texts"
+msgstr "тексты"
+
+msgid "Buy now"
+msgstr "Купить"
+
+msgid "No parts yet."
+msgstr "Частей пока нет."
+
+msgid "Psychology: show the next small step. People buy when the decision feels simple."
+msgstr "Психология: покажите следующий маленький шаг. Покупают, когда решение кажется простым."
+
+msgid "Reviews"
+msgstr "Отзывы"
+
+msgid "No reviews yet."
+msgstr "Отзывов пока нет."
+
+msgid "Rating"
+msgstr "Оценка"
+
+msgid "Comment"
+msgstr "Комментарий"
+
+msgid "Short feedback"
+msgstr "Короткий отзыв"
+
+msgid "Send"
+msgstr "Отправить"
+
+#: templates/accounts/login.html
+msgid "Welcome back — let's continue your progress."
+msgstr "С возвращением — продолжим прогресс."
+
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+msgid "Join N.O.K"
+msgstr "Присоединиться к N.O.K"
+
+#: templates/accounts/register.html
+msgid "Create your account"
+msgstr "Создайте аккаунт"
+
+msgid "Start free — you can upgrade anytime when you're ready."
+msgstr "Начните бесплатно — обновиться можно в любой момент."
+
+msgid "Create account"
+msgstr "Создать аккаунт"
+
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+msgid "Sign in instead"
+msgstr "Войти"
+
+# Email verification / auth UX
+msgid "We sent you a verification link. Open it to activate your account, then you can sign in."
+msgstr "Мы отправили ссылку для подтверждения. Откройте её, чтобы активировать аккаунт, затем войдите."
+
+msgid "Tip:"
+msgstr "Подсказка:"
+
+msgid "If you don't see it, check Spam/Junk."
+msgstr "Если не видите, проверьте Спам/Нежелательную почту."
+
+msgid "Your email"
+msgstr "Ваш email"
+
+msgid "Resend"
+msgstr "Отправить снова"
+
+msgid "Back to sign in"
+msgstr "Назад ко входу"
+
+msgid "Invalid or expired link"
+msgstr "Ссылка недействительна или истекла"
+
+msgid "This verification link is not valid anymore. You can request a new one below."
+msgstr "Эта ссылка для подтверждения больше не действует. Вы можете запросить новую ниже."
+
+msgid "Send new link"
+msgstr "Отправить новую ссылку"
+
+msgid "Back to home"
+msgstr "На главную"
+
+msgid "New here?"
+msgstr "Впервые здесь?"
+
+msgid "Create an account"
+msgstr "Создать аккаунт"
+
+msgid "If you just registered, verify your email first."
+msgstr "Если вы только что зарегистрировались, сначала подтвердите email."
+
+msgid "Please enter your email."
+msgstr "Пожалуйста, введите ваш email."
+
+msgid "If an inactive account exists for that email, we sent a verification link."
+msgstr "Если для этого email есть неактивный аккаунт, мы отправили ссылку для подтверждения."
+
+msgid "Email verified. You can sign in now."
+msgstr "Email подтверждён. Теперь вы можете войти."
+
+msgid "✅ Verify your N.O.K account"
+msgstr "✅ Подтвердите ваш аккаунт N.O.K"
+
+msgid "Hi!"
+msgstr "Здравствуйте!"
+
+msgid "Please verify your email to activate your N.O.K account:"
+msgstr "Подтвердите email, чтобы активировать ваш аккаунт N.O.K:"
+
+msgid "If you did not create an account, you can ignore this email."
+msgstr "Если вы не создавали аккаунт, просто проигнорируйте это письмо."

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="nok-card p-4 p-md-5">
+      <h1 class="h4 fw-semibold mb-2 nok-reveal">{% trans "Check your email" %}</h1>
+      <p class="text-muted nok-reveal">
+        {% trans "We sent you a verification link. Open your email and click the link to activate your account." %}
+      </p>
+
+      <hr class="my-4">
+
+      <form method="post" action="{% url 'accounts:resend_verification' %}" class="row g-2 align-items-end">
+        {% csrf_token %}
+        <div class="col-12 col-md-8">
+          <label class="form-label small">{% trans "Email" %}</label>
+          <input name="email" type="email" class="form-control" required placeholder="you@example.com">
+        </div>
+        <div class="col-12 col-md-4">
+          <button class="btn btn-outline-primary w-100">{% trans "Resend" %}</button>
+        </div>
+      </form>
+
+      <div class="small text-muted mt-3">
+        {% trans "Tip:" %} {% trans "In development mode emails are printed in the terminal. In production configure SMTP in .env." %}
+      </div>
+
+      <div class="mt-4">
+        <a class="btn btn-primary" href="{% url 'accounts:login' %}">{% trans "Back to sign in" %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

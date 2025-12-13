@@ -1,0 +1,380 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: NOK\n"
+"Language: uz\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/base.html
+msgid "Network of Knowledge"
+msgstr "Bilim tarmog‘i"
+
+msgid "Dashboard"
+msgstr "Boshqaruv"
+
+msgid "Wallet"
+msgstr "Hamyon"
+
+msgid "Courses"
+msgstr "Kurslar"
+
+msgid "Events"
+msgstr "Tadbirlar"
+
+msgid "AI Teacher"
+msgstr "AI o‘qituvchi"
+
+msgid "Log out"
+msgstr "Chiqish"
+
+msgid "Sign in"
+msgstr "Kirish"
+
+msgid "Join for free"
+msgstr "Bepul qo‘shilish"
+
+msgid "Apply"
+msgstr "Qo‘llash"
+
+msgid "Built for learners in Uzbekistan"
+msgstr "O‘zbekiston o‘quvchilari uchun"
+
+#: templates/landing.html
+msgid "Learn faster. Stay focused. Win confidence."
+msgstr "Tezroq o‘rganing. Diqqatni saqlang. Ishonch hosil qiling."
+
+msgid "A smarter way to learn"
+msgstr "O‘rganishning aqlli yo‘li"
+
+msgid "with real teachers"
+msgstr "haqiqiy ustozlar bilan"
+
+msgid "and a 24/7 AI tutor."
+msgstr "va 24/7 AI yordamchi bilan."
+
+msgid "N.O.K helps students in Uzbekistan study with structure: clear course parts, progress tracking, and a wallet that makes buying lessons easy."
+msgstr "N.O.K O‘zbekistondagi o‘quvchilarga tartib bilan o‘qishga yordam beradi: kurs bo‘limlari, progress kuzatuvi va dars sotib olishni oson qiladigan hamyon."
+
+msgid "Start free"
+msgstr "Bepul boshlash"
+
+msgid "Explore courses"
+msgstr "Kurslarni ko‘rish"
+
+msgid "Instant access"
+msgstr "Tezkor kirish"
+
+msgid "Payme & Click ready (simulation)"
+msgstr "Payme va Click tayyor (simulyatsiya)"
+
+msgid "Mobile-first design"
+msgstr "Telefon uchun qulay dizayn"
+
+msgid "Today’s learning plan"
+msgstr "Bugungi o‘quv reja"
+
+msgid "15 minutes"
+msgstr "15 daqiqa"
+
+msgid "Momentum"
+msgstr "Harakat"
+
+msgid "Small steps feel easy, but they build big results."
+msgstr "Kichik qadamlar oson, lekin katta natija beradi."
+
+msgid "Streak"
+msgstr "Ketma-ket"
+
+msgid "Your progress"
+msgstr "Sizning progress"
+
+msgid "Level"
+msgstr "Daraja"
+
+msgid "People continue when they can see progress."
+msgstr "Odamlar progressni ko‘rsa davom ettiradi."
+
+msgid "so'm"
+msgstr "so‘m"
+
+msgid "Top up via Payme/Click and unlock parts in seconds."
+msgstr "Payme/Click orqali to‘ldiring va bo‘limlarni soniyalarda oching."
+
+msgid "Try AI"
+msgstr "AI sinab ko‘rish"
+
+msgid "Ask questions instead of quitting when you feel stuck."
+msgstr "Qiyin bo‘lsa tashlab ketmang — savol bering."
+
+msgid "Psychology tip: we use clear steps, progress cues, and quick wins to keep motivation high."
+msgstr "Psixologik usul: aniq qadamlar, progress belgisi va tez yutuqlar motivatsiyani oshiradi."
+
+msgid "Clear structure"
+msgstr "Aniq tuzilma"
+
+msgid "Courses are split into parts so you can buy only what you need and feel constant progress."
+msgstr "Kurslar bo‘limlarga bo‘lingan: faqat keraklisini sotib oling va doimiy progressni his qiling."
+
+msgid "Fast checkout"
+msgstr "Tez to‘lov"
+
+msgid "Wallet top-ups with Payme & Click flow (simulation). Reduce friction: less thinking, more learning."
+msgstr "Payme va Click orqali hamyon to‘ldirish (simulyatsiya). Kamroq o‘ylash — ko‘proq o‘rganish."
+
+msgid "Social proof"
+msgstr "Ijtimoiy isbot"
+
+msgid "Reviews, teacher profiles, and recent activity build trust before purchase."
+msgstr "Sharhlar, ustoz profillari va faollik sotib olishdan oldin ishonchni oshiradi."
+
+msgid "Ready to start?"
+msgstr "Boshlashga tayyormisiz?"
+
+msgid "Join free today. Your first progress streak starts immediately."
+msgstr "Bugun bepul qo‘shiling. Birinchi ketma-ketlik darhol boshlanadi."
+
+msgid "Create account"
+msgstr "Akkaunt yaratish"
+
+#: templates/wallet/wallet.html
+msgid "Top up in seconds, then unlock lessons without friction."
+msgstr "Bir necha soniyada to‘ldiring va darslarni oson oching."
+
+msgid "Balance"
+msgstr "Balans"
+
+msgid "Z Coins"
+msgstr "Z tanga"
+
+msgid "Referral"
+msgstr "Referal"
+
+msgid "Copy"
+msgstr "Nusxa olish"
+
+msgid "Share your code. When friends buy Z, you get a bonus."
+msgstr "Kodingizni ulashing. Do‘stlar Z sotib olsa, siz bonus olasiz."
+
+msgid "Top up"
+msgstr "To‘ldirish"
+
+msgid "Amount"
+msgstr "Miqdor"
+
+msgid "Top up with Payme"
+msgstr "Payme orqali"
+
+msgid "Top up with Click"
+msgstr "Click orqali"
+
+msgid "Or quick deposit (simulation)"
+msgstr "Yoki tez depozit (simulyatsiya)"
+
+msgid "Deposit"
+msgstr "Depozit"
+
+msgid "Convert"
+msgstr "Konvertatsiya"
+
+msgid "Convert UZS → Z"
+msgstr "UZS → Z aylantirish"
+
+msgid "UZS to convert"
+msgstr "Aylantirish uchun UZS"
+
+msgid "1 Z = 10 000 so'm"
+msgstr "1 Z = 10 000 so‘m"
+
+msgid "Withdraw"
+msgstr "Yechib olish"
+
+msgid "Withdraw Z → UZS"
+msgstr "Z → UZS yechish"
+
+msgid "Z to withdraw"
+msgstr "Yechish uchun Z"
+
+msgid "1% fee. (Simulation)"
+msgstr "1% komissiya. (Simulyatsiya)"
+
+msgid "Recent transactions"
+msgstr "So‘nggi tranzaksiyalar"
+
+msgid "No transactions yet."
+msgstr "Hozircha tranzaksiya yo‘q."
+
+#: templates/wallet/payment_simulate.html
+msgid "Payment simulation"
+msgstr "To‘lov simulyatsiyasi"
+
+msgid "This is a safe demo flow. Replace it with real Payme/Click redirect + callbacks when you have API keys."
+msgstr "Bu xavfsiz demo. API kalitlari bo‘lsa, haqiqiy Payme/Click redirect va callbacklar bilan almashtiring."
+
+msgid "Top up amount"
+msgstr "To‘ldirish miqdori"
+
+msgid "Order"
+msgstr "Buyurtma"
+
+msgid "Pay now"
+msgstr "Hozir to‘lash"
+
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+msgid "Psychology: remove uncertainty — clear amount, clear action, clear confirmation."
+msgstr "Psixologiya: noaniqlikni kamaytiring — aniq miqdor, aniq amal, aniq tasdiq."
+
+#: templates/courses/course_list.html
+msgid "Pick a subject, start small, and build a streak."
+msgstr "Fan tanlang, kichikdan boshlang va ketma-ketlik yarating."
+
+msgid "Search by subject"
+msgstr "Fan bo‘yicha qidirish"
+
+msgid "Search"
+msgstr "Qidirish"
+
+msgid "Teacher"
+msgstr "Ustoz"
+
+msgid "Open"
+msgstr "Ochish"
+
+msgid "No courses found."
+msgstr "Kurs topilmadi."
+
+#: templates/courses/course_detail.html
+msgid "Average rating"
+msgstr "O‘rtacha baho"
+
+msgid "Back"
+msgstr "Orqaga"
+
+msgid "Course parts"
+msgstr "Kurs bo‘limlari"
+
+msgid "videos"
+msgstr "video"
+
+msgid "texts"
+msgstr "matn"
+
+msgid "Buy now"
+msgstr "Sotib olish"
+
+msgid "No parts yet."
+msgstr "Hozircha bo‘lim yo‘q."
+
+msgid "Psychology: show the next small step. People buy when the decision feels simple."
+msgstr "Psixologiya: keyingi kichik qadamni ko‘rsating. Qaror oson bo‘lsa, odamlar sotib oladi."
+
+msgid "Reviews"
+msgstr "Sharhlar"
+
+msgid "No reviews yet."
+msgstr "Hozircha sharh yo‘q."
+
+msgid "Rating"
+msgstr "Baho"
+
+msgid "Comment"
+msgstr "Izoh"
+
+msgid "Short feedback"
+msgstr "Qisqa fikr"
+
+msgid "Send"
+msgstr "Yuborish"
+
+#: templates/accounts/login.html
+msgid "Welcome back — let's continue your progress."
+msgstr "Xush kelibsiz — progressni davom ettiramiz."
+
+msgid "Continue"
+msgstr "Davom etish"
+
+msgid "Don’t have an account?"
+msgstr "Akkaunt yo‘qmi?"
+
+msgid "Join N.O.K"
+msgstr "N.O.K ga qo‘shiling"
+
+#: templates/accounts/register.html
+msgid "Create your account"
+msgstr "Akkauntingizni yarating"
+
+msgid "Start free — you can upgrade anytime when you're ready."
+msgstr "Bepul boshlang — tayyor bo‘lsangiz istalgan payt yangilashingiz mumkin."
+
+msgid "Already have an account?"
+msgstr "Akkauntingiz bormi?"
+
+msgid "Sign in instead"
+msgstr "Kirish"
+
+msgid "After registration we will send you a verification email. Activate your account to sign in."
+msgstr "Ro‘yxatdan o‘tgach, tasdiqlash xati yuboramiz. Akkauntingizni faollashtirib, so‘ng kiring."
+
+msgid "Check your email"
+msgstr "Emailingizni tekshiring"
+
+msgid "We sent you a verification link. Open it to activate your account, then you can sign in."
+msgstr "Biz tasdiqlash havolasini yubordik. Akkauntingizni faollashtiring, so‘ng kirishingiz mumkin."
+
+msgid "Tip:"
+msgstr "Maslahat:"
+
+msgid "If you don't see it, check Spam/Junk."
+msgstr "Ko‘rinmasa, Spam/Junk bo‘limini tekshiring."
+
+msgid "Your email"
+msgstr "Emailingiz"
+
+msgid "Resend"
+msgstr "Qayta yuborish"
+
+msgid "Back to sign in"
+msgstr "Kirish sahifasiga qaytish"
+
+msgid "Invalid or expired link"
+msgstr "Havola noto‘g‘ri yoki muddati o‘tgan"
+
+msgid "This verification link is not valid anymore. You can request a new one below."
+msgstr "Bu tasdiqlash havolasi endi ishlamaydi. Quyida yangisini so‘rashingiz mumkin."
+
+msgid "Send new link"
+msgstr "Yangi havola yuborish"
+
+msgid "Back to home"
+msgstr "Bosh sahifaga qaytish"
+
+msgid "New here?"
+msgstr "Yangi foydalanuvchimisiz?"
+
+msgid "Create an account"
+msgstr "Akkaunt yaratish"
+
+msgid "If you just registered, verify your email first."
+msgstr "Agar hozirgina ro‘yxatdan o‘tgan bo‘lsangiz, avval emailingizni tasdiqlang."
+
+msgid "Please enter your email."
+msgstr "Iltimos, emailingizni kiriting."
+
+msgid "If an inactive account exists for that email, we sent a verification link."
+msgstr "Agar bu email uchun faol bo‘lmagan akkaunt mavjud bo‘lsa, tasdiqlash havolasini yubordik."
+
+msgid "Email verified. You can sign in now."
+msgstr "Email tasdiqlandi. Endi kirishingiz mumkin."
+
+msgid "✅ Verify your N.O.K account"
+msgstr "✅ N.O.K akkauntingizni tasdiqlang"
+
+msgid "Hi!"
+msgstr "Salom!"
+
+msgid "Please verify your email to activate your N.O.K account:"
+msgstr "N.O.K akkauntingizni faollashtirish uchun emailingizni tasdiqlang:"
+
+msgid "If you did not create an account, you can ignore this email."
+msgstr "Agar akkaunt yaratmagan bo‘lsangiz, bu xatni e’tiborsiz qoldirishingiz mumkin."

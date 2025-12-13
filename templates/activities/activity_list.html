@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-3">Events & Tournaments</h2>
+<p class="small text-secondary">
+  Humans are more motivated in groups. Join tournaments, stand-ups and hackathons to learn with others, not alone.
+</p>
+<div class="row g-3 mt-2">
+  {% for a in activities %}
+    <div class="col-md-6">
+      <div class="nok-card p-3 h-100">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5 class="mb-1">{{ a.title }}</h5>
+            <div class="small text-secondary">
+              {{ a.get_activity_type_display }} · {{ a.start_at|date:"M d, H:i" }} – {{ a.end_at|date:"H:i" }}
+            </div>
+            <div class="small text-secondary mt-1">
+              Entry: {{ a.entry_fee_z }} Z · Prize pool: {{ a.prize_pool_z }} Z
+            </div>
+            <div class="small text-secondary mt-1">
+              Created by {{ a.created_by.display_name }}
+            </div>
+          </div>
+          <div class="ms-2">
+            <form method="post" action="{% url 'activities:join_activity' a.id %}">
+              {% csrf_token %}
+              <button class="btn btn-sm btn-outline-success">Join</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="small text-secondary">No events yet. CEOs can create them in admin.</p>
+  {% endfor %}
+</div>
+{% endblock %}

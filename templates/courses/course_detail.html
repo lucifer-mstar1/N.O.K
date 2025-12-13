@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+  <div>
+    <span class="nok-pill small d-inline-flex gap-2 mb-2"><span>📚</span><span>{{ course.subject }}</span></span>
+    <h2 class="mb-1">{{ course.title }}</h2>
+    {% if course.description %}<div class="text-muted">{{ course.description }}</div>{% endif %}
+    <div class="small text-muted mt-2">
+      {% trans "Average rating" %}: <strong>{{ avg_rating|floatformat:1 }}★</strong>
+    </div>
+  </div>
+  <a href="{% url 'courses:course_list' %}" class="btn btn-outline-secondary">{% trans "Back" %}</a>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-7">
+    <div class="nok-card p-4 nok-reveal">
+      <h5 class="mb-3">{% trans "Course parts" %}</h5>
+      <div class="d-flex flex-column gap-2">
+        {% for part in parts %}
+          <div class="p-3 border rounded-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+              <div>
+                <div class="fw-semibold">{{ part.name }}</div>
+                {% if part.description %}<div class="text-muted small">{{ part.description }}</div>{% endif %}
+                <div class="small text-muted mt-1">
+                  {{ part.num_videos }} {% trans "videos" %} · {{ part.num_texts }} {% trans "texts" %}
+                </div>
+              </div>
+              <div class="text-end">
+                <div class="fw-semibold">{{ part.price_z }} Z</div>
+                <form method="post" action="{% url 'courses:buy_part' part.id %}">
+                  {% csrf_token %}
+                  <button class="btn btn-primary btn-sm mt-1">{% trans "Buy now" %}</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <div class="text-muted">{% trans "No parts yet." %}</div>
+        {% endfor %}
+      </div>
+
+      <div class="text-muted small mt-3">
+        {% trans "Psychology: show the next small step. People buy when the decision feels simple." %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="nok-card p-4 nok-reveal">
+      <h5 class="mb-3">{% trans "Reviews" %}</h5>
+      {% for r in reviews %}
+        <div class="border rounded-4 p-3 mb-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="fw-semibold">{{ r.student.username }}</div>
+            <div class="small">{{ r.rating }}★</div>
+          </div>
+          {% if r.comment %}<div class="text-muted small mt-1">{{ r.comment }}</div>{% endif %}
+        </div>
+      {% empty %}
+        <div class="text-muted">{% trans "No reviews yet." %}</div>
+      {% endfor %}
+
+      <hr class="my-3">
+
+      <form method="post" action="{% url 'courses:add_review' course.id %}">
+        {% csrf_token %}
+        <div class="row g-2">
+          <div class="col-4">
+            <label class="form-label small">{% trans "Rating" %}</label>
+            <select class="form-select" name="rating">
+              <option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>
+            </select>
+          </div>
+          <div class="col-8">
+            <label class="form-label small">{% trans "Comment" %}</label>
+            <input class="form-control" name="comment" placeholder="{% trans 'Short feedback' %}">
+          </div>
+        </div>
+        <button class="btn btn-outline-primary btn-sm mt-2">{% trans "Send" %}</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row align-items-center gy-4 nok-section">
+  <div class="col-lg-6">
+    <div class="nok-hero nok-card nok-reveal">
+      <span class="nok-pill small d-inline-flex align-items-center gap-2 mb-3">
+        <span>✨</span>
+        <span>{% trans "Learn faster. Stay focused. Win confidence." %}</span>
+      </span>
+
+      <h1 class="display-6 fw-semibold mb-3">
+        {% trans "A smarter way to learn" %}
+        <span class="nok-gradient-text">{% trans "with real teachers" %}</span>
+        {% trans "and a 24/7 AI tutor." %}
+      </h1>
+
+      <p class="lead text-muted mb-3">
+        {% trans "N.O.K helps students in Uzbekistan study with structure: clear course parts, progress tracking, and a wallet that makes buying lessons easy." %}
+      </p>
+
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <a href="{% url 'accounts:register' %}" class="btn btn-primary btn-lg">
+          {% trans "Start free" %}
+        </a>
+        <a href="{% url 'courses:course_list' %}" class="btn btn-outline-primary btn-lg">
+          {% trans "Explore courses" %}
+        </a>
+      </div>
+
+      <div class="nok-trust small">
+        <span>✅ {% trans "Instant access" %}</span>
+        <span>✅ {% trans "Payme & Click ready (simulation)" %}</span>
+        <span>✅ {% trans "Mobile-first design" %}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="nok-card p-4 nok-reveal">
+      <div class="d-flex align-items-start justify-content-between flex-wrap gap-3">
+        <div>
+          <div class="small text-muted">{% trans "Today’s learning plan" %}</div>
+            <div class="small text-muted mb-3 nok-reveal">{% trans "15 minutes" %} · <span class="nok-gradient-text">{% trans "Momentum" %}</span></div>
+          <div class="small text-muted">{% trans "Small steps feel easy, but they build big results." %}</div>
+        </div>
+        <span class="badge text-bg-light border">{% trans "Streak" %}: 🔥 7</span>
+      </div>
+
+      <hr class="my-3">
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <div class="p-3 border rounded-4">
+            <div class="small text-muted">{% trans "Your progress" %}</div>
+            <div class="fw-semibold">{% trans "Level" %} 4</div>
+            <div class="progress mt-2" style="height: 10px;">
+              <div class="progress-bar" style="width: 62%"></div>
+            </div>
+            <div class="small text-muted mt-2">{% trans "People continue when they can see progress." %}</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="p-3 border rounded-4">
+            <div class="small text-muted">{% trans "Wallet" %}</div>
+            <div class="fw-semibold">3 200 000 {% trans "so'm" %}</div>
+            <div class="small text-muted">{% trans "Top up via Payme/Click and unlock parts in seconds." %}</div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-3 border rounded-4">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+              <div>
+                <div class="fw-semibold">{% trans "AI Tutor" %}</div>
+                <div class="small text-muted">{% trans "Ask questions instead of quitting when you feel stuck." %}</div>
+              </div>
+              <a class="btn btn-outline-primary btn-sm" href="{% url 'aitutor:chat' %}">{% trans "Try AI" %}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="small text-muted mt-3">
+        {% trans "Psychology tip: we use clear steps, progress cues, and quick wins to keep motivation high." %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3 nok-section">
+  <div class="col-lg-4">
+    <div class="nok-card p-4 nok-reveal">
+      <div class="d-flex gap-3">
+        <div class="nok-icon-badge">🎯</div>
+        <div>
+          <div class="fw-semibold">{% trans "Clear structure" %}</div>
+          <div class="text-muted small">{% trans "Courses are split into parts so you can buy only what you need and feel constant progress." %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="nok-card p-4 nok-reveal">
+      <div class="d-flex gap-3">
+        <div class="nok-icon-badge">⚡</div>
+        <div>
+          <div class="fw-semibold">{% trans "Fast checkout" %}</div>
+          <div class="text-muted small">{% trans "Wallet top-ups with Payme & Click flow (simulation). Reduce friction: less thinking, more learning." %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="nok-card p-4 nok-reveal">
+      <div class="d-flex gap-3">
+        <div class="nok-icon-badge">🤝</div>
+        <div>
+          <div class="fw-semibold">{% trans "Social proof" %}</div>
+          <div class="text-muted small">{% trans "Reviews, teacher profiles, and recent activity build trust before purchase." %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row nok-section">
+  <div class="col-12">
+    <div class="nok-card p-4 nok-reveal">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div>
+          <div class="fw-semibold fs-5">{% trans "Ready to start?" %}</div>
+          <div class="text-muted">{% trans "Join free today. Your first progress streak starts immediately." %}</div>
+        </div>
+        <div class="d-flex gap-2">
+          <a href="{% url 'accounts:register' %}" class="btn btn-primary">{% trans "Create account" %}</a>
+          <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary">{% trans "Sign in" %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

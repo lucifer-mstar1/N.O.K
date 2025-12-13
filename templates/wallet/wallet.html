@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+  <div>
+    <h2 class="mb-0">{% trans "Wallet" %}</h2>
+    <div class="text-muted">{% trans "Top up in seconds, then unlock lessons without friction." %}</div>
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-8">
+    <div class="nok-card p-3 mb-3 nok-reveal">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="border rounded-4 p-3 h-100">
+            <div class="small text-muted">{% trans "Z Coins" %}</div>
+            <div class="fw-semibold fs-5 nok-gradient-text">{{ wallet.balance_z }} Z</div>
+            <div class="small text-muted">{% trans "Use Z to buy course parts" %}</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="border rounded-4 p-3 h-100">
+            <div class="small text-muted">{% trans "UZS balance" %}</div>
+            <div class="fw-semibold fs-5">{{ wallet.balance_uzs }} {% trans "so'm" %}</div>
+            <div class="small text-muted">{% trans "Top up via manual card transfer (for now)" %}</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="border rounded-4 p-3 h-100">
+            <div class="small text-muted">{% trans "Referral code" %}</div>
+            <div class="d-flex align-items-center justify-content-between gap-2">
+              <div class="fw-semibold">{{ request.user.referral_code }}</div>
+              <button class="btn btn-outline-secondary btn-sm" type="button" data-copy-ref="{{ request.user.referral_code }}">{% trans "Copy" %}</button>
+            </div>
+            <div class="small text-muted mt-2">{% trans "Invite friends — when they buy, you get bonus." %}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nok-card p-3 nok-reveal">
+      <div class="d-flex justify-content-between align-items-center">
+        <h6 class="text-muted mb-2">{% trans "Recent transactions" %}</h6>
+        <span class="badge text-bg-light border">{% trans "Last" %} 50</span>
+      </div>
+      <div class="small" style="max-height: 320px; overflow-y:auto;">
+        {% for tx in transactions %}
+          <div class="d-flex justify-content-between border-bottom py-2">
+            <span>{{ tx.created_at|date:"Y-m-d H:i" }} · {{ tx.get_type_display }}</span>
+            <span class="text-muted">
+              {% if tx.amount_z %}{{ tx.amount_z }} Z{% endif %}
+              {% if tx.amount_uzs %} ({{ tx.amount_uzs }} UZS){% endif %}
+            </span>
+          </div>
+        {% empty %}
+          <div class="text-muted">{% trans "No transactions yet." %}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="nok-card p-3 mb-3 nok-reveal">
+      <h6 class="mb-2">{% trans "Top up wallet" %}</h6>
+      <div class="text-muted small mb-3">{% trans "For MVP: send money to a card and submit the payment reference. Admin will approve and your wallet will be credited." %}</div>
+      <form method="post" class="small">
+        {% csrf_token %}
+        <div class="mb-2">
+          <label class="form-label small">{% trans "Amount in so'm" %}</label>
+          <input type="number" name="amount_uzs" class="form-control" placeholder="200000" min="1000">
+        </div>
+        <div class="mb-2">
+          <label class="form-label small">{% trans "Payment reference (optional)" %}</label>
+          <input type="text" name="reference" class="form-control" placeholder="e.g. TX12345 / last 4 digits">
+          <div class="form-text">{% trans "After you pay, write any note that helps us find your transfer." %}</div>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" name="action" value="card_request">{% trans "Submit card transfer" %}</button>
+          <button class="btn btn-outline-primary" name="action" value="demo_gateway">{% trans "Demo payment (instant)" %}</button>
+        </div>
+        <div class="alert alert-light border mt-3 small mb-0">
+          <div class="fw-semibold">{% trans "Where to pay" %}</div>
+          {% if pay_settings %}
+            <div class="text-muted">
+              {% trans "Send to card" %}: <span class="fw-semibold">{{ pay_settings.card_holder }}</span>
+              · **** **** **** <span class="fw-semibold">{{ pay_settings.card_last4 }}</span>
+            </div>
+            {% if pay_settings.telegram_support %}
+              <div class="text-muted mt-1">{% trans "Support" %}: <span class="fw-semibold">{{ pay_settings.telegram_support }}</span></div>
+            {% endif %}
+            <div class="form-text">{% trans "After payment, submit the amount + any reference. Admin approves, then your balance updates." %}</div>
+          {% else %}
+            <div class="text-muted">{% trans "Admin: set payment settings in Django Admin → Site Payment Settings." %}</div>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+
+    <div class="nok-card p-3 mb-3 nok-reveal">
+      <h6 class="mb-2">{% trans "Convert UZS → Z" %}</h6>
+      <form method="post" class="small">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="convert">
+        <div class="mb-2">
+          <label class="form-label small">{% trans "UZS to convert" %}</label>
+          <input type="number" name="convert_uzs" class="form-control" placeholder="300000" min="1000">
+        </div>
+        <button class="btn btn-outline-secondary w-100">{% trans "Convert" %}</button>
+        <div class="form-text text-muted">{% trans "Rate" %}: 1 Z = 10 000 {% trans "so'm" %}</div>
+      </form>
+    </div>
+
+    <div class="nok-card p-3 nok-reveal">
+      <h6 class="mb-2">{% trans "Withdraw" %}</h6>
+      <form method="post" class="small">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="withdraw">
+        <div class="mb-2">
+          <label class="form-label small">{% trans "Z coins to withdraw" %}</label>
+          <input type="number" name="withdraw_z" class="form-control" placeholder="50" min="0">
+        </div>
+        <button class="btn btn-outline-danger w-100">{% trans "Withdraw" %}</button>
+        <div class="form-text text-muted">{% trans "Simulation only. Add your real payout logic later." %}</div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

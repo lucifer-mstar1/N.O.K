@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <div class="nok-card p-4 nok-reveal">
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+        <div>
+          <h3 class="mb-1">{% trans "Payment simulation" %}</h3>
+          <div class="text-muted">{% trans "This is a safe demo flow. Replace it with real Payme/Click redirect + callbacks when you have API keys." %}</div>
+        </div>
+        <span class="badge text-bg-light border">{{ order.get_provider_display }}</span>
+      </div>
+
+      <hr class="my-3">
+
+      <div class="p-3 border rounded-4">
+        <div class="small text-muted">{% trans "Top up amount" %}</div>
+        <div class="fs-4 fw-semibold">{{ order.amount_uzs }} {% trans "UZS" %}</div>
+        <div class="small text-muted">{% trans "Order" %} #{{ order.id }}</div>
+      </div>
+
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        <a class="btn btn-primary" href="{% url 'wallet:payment_success' order.id %}">{% trans "Pay now" %}</a>
+        <a class="btn btn-outline-secondary" href="{% url 'wallet:wallet' %}">{% trans "Cancel" %}</a>
+      </div>
+
+      <div class="text-muted small mt-3">
+        {% trans "Psychology: remove uncertainty — clear amount, clear action, clear confirmation." %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

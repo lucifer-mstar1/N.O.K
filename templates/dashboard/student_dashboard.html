@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-2">Welcome, {{ user.display_name }} 👋</h2>
+<p class="text-secondary small mb-3">
+  Every day you study a little, your XP and level grow. Your goal is not perfection – your goal is progress.
+</p>
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="nok-card p-3 h-100">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <div class="small text-secondary">Study profile</div>
+          <div class="fw-semibold">Level {{ user.level }}</div>
+        </div>
+        <span class="level-pill">XP: {{ user.xp }}</span>
+      </div>
+      <div class="small text-secondary mt-2">
+        Streak: {% if user.streak_days %}🔥 {{ user.streak_days }} days{% else %}Start your streak today{% endif %}
+      </div>
+      <hr>
+      <div class="small text-secondary">
+        Your brain loves small wins. Finish one part, ask AI one question, join one event – that’s enough for today.
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="nok-card p-3 h-100">
+      <div class="small text-secondary mb-1">Wallet</div>
+      <div class="fw-semibold text-success">{{ user.wallet.balance_z }} Z</div>
+      <div class="small text-secondary">{{ user.wallet.balance_uzs }} so'm</div>
+      <hr>
+      <div class="small text-secondary">
+        Referral code:
+        <span class="text-success fw-semibold">{{ user.referral_code }}</span><br>
+        Invite a friend. When they buy Z Coins, you both win.
+      </div>
+      <a href="{% url 'wallet:wallet' %}" class="btn btn-outline-success btn-sm mt-2">Open wallet</a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="nok-card p-3 h-100">
+      <div class="small text-secondary mb-1">Next steps</div>
+      <ul class="small text-secondary mb-2">
+        <li>Pick one course that matches your goal.</li>
+        <li>Unlock just one part, not everything.</li>
+        <li>Talk to AI teacher when you feel stuck.</li>
+      </ul>
+      <a href="{% url 'courses:course_list' %}" class="btn btn-success btn-sm mb-2">Browse courses</a>
+      <a href="{% url 'aitutor:chat' %}" class="btn btn-outline-light btn-sm">Ask AI teacher</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

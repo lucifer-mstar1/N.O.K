@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-2">Teacher panel – {{ user.display_name }}</h2>
+{% if not user.teacher_enrolled %}
+  <div class="alert alert-warning border-0">
+    <div class="fw-semibold">Complete teacher enrollment</div>
+    <div class="small">To publish paid courses, pay the one-time enrollment fee of <b>10 Z Coins</b>.</div>
+    <div class="mt-2 d-flex gap-2 flex-wrap">
+      <a href="{% url 'wallet:wallet' %}" class="btn btn-dark btn-sm">Get Z Coins</a>
+      <a href="{% url 'wallet:teacher_enroll' %}" class="btn btn-primary btn-sm">Pay 10 Z &amp; unlock publishing</a>
+    </div>
+  </div>
+{% endif %}
+<p class="text-secondary small mb-3">
+  Your knowledge becomes a product here. Students pay Z Coins, which means they are serious.
+  Design short, clear lessons and parts to help them feel constant progress.
+</p>
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="nok-card p-3 h-100">
+      <div class="small text-secondary mb-1">Earnings</div>
+      <div class="fw-semibold text-success">{{ user.wallet.balance_z }} Z</div>
+      <div class="small text-secondary">Withdraw with 1% fee anytime (simulated for now).</div>
+      <a href="{% url 'wallet:wallet' %}" class="btn btn-outline-success btn-sm mt-2">Wallet</a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="nok-card p-3 h-100">
+      <div class="small text-secondary mb-1">Courses</div>
+      <p class="small text-secondary">
+        Use the admin panel to add courses, parts and lessons. Keep videos short and structured.
+      </p>
+      <a href="/admin/courses/course/" class="btn btn-success btn-sm">Open course admin</a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="nok-card p-3 h-100">
+      <div class="small text-secondary mb-1">Teaching psychology</div>
+      <p class="small text-secondary">
+        Start from easiest concepts, show progress clearly, and always explain "why" not just "how".
+        Students who feel small wins will buy the next parts from you.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

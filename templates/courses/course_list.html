@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-3">
+  <div>
+    <h2 class="mb-0">{% trans "Courses" %}</h2>
+    <div class="text-muted">{% trans "Pick a subject, start small, and build a streak." %}</div>
+  </div>
+  <form method="get" class="d-flex gap-2">
+    <input type="text" name="subject" value="{{ request.GET.subject }}" class="form-control" placeholder="{% trans 'Search by subject' %}">
+    <button class="btn btn-primary">{% trans "Search" %}</button>
+  </form>
+</div>
+
+<div class="row g-3">
+  {% for course in courses %}
+    <div class="col-md-6 col-lg-4">
+      <div class="nok-card p-4 h-100 nok-reveal">
+        <div class="d-flex justify-content-between align-items-start gap-2">
+          <div>
+            <div class="small text-muted">{{ course.subject }}</div>
+            <div class="fw-semibold fs-5">{{ course.title }}</div>
+          </div>
+          <span class="badge text-bg-light border">{{ course.average_rating|floatformat:1 }}★</span>
+        </div>
+        <p class="text-muted mt-2 small" style="min-height: 3.2em;">{{ course.description|default:_('No description yet.')|truncatechars:120 }}</p>
+        <div class="mt-auto d-flex justify-content-between align-items-center">
+          <span class="small text-muted">{% trans "Teacher" %}: {{ course.teacher.username }}</span>
+          <a class="btn btn-outline-primary btn-sm" href="{% url 'courses:course_detail' course.id %}">{% trans "Open" %}</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-12">
+      <div class="nok-card p-4 text-muted">{% trans "No courses found." %}</div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

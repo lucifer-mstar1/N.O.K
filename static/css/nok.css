@@ -1,0 +1,152 @@
+:root{
+  --nok-bg: #ffffff;
+  --nok-surface: #f6f7fb;
+  --nok-text: #0f172a;
+  --nok-muted: #64748b;
+  --nok-border: rgba(15, 23, 42, .10);
+  --nok-shadow: 0 10px 30px rgba(2, 6, 23, .08);
+  --nok-shadow-soft: 0 8px 20px rgba(2, 6, 23, .06);
+  --nok-primary: #2563eb;
+  --nok-primary-2: #7c3aed;
+  --nok-glow: rgba(37, 99, 235, .25);
+  --nok-radius: 18px;
+  --nok-ring: 0 0 0 .2rem rgba(37,99,235,.18);
+}
+
+/* Dark theme (toggled via JS on <html data-theme="dark">) */
+html[data-theme="dark"]{
+  --nok-bg: #0b1020;
+  --nok-surface: #0f172a;
+  --nok-text: #e5e7eb;
+  --nok-muted: #94a3b8;
+  --nok-border: rgba(226, 232, 240, .12);
+  --nok-shadow: 0 16px 40px rgba(0, 0, 0, .45);
+  --nok-shadow-soft: 0 10px 25px rgba(0, 0, 0, .32);
+  --nok-glow: rgba(124, 58, 237, .25);
+}
+
+html, body{
+  height: 100%;
+  background: var(--nok-bg);
+}
+
+body{
+  color: var(--nok-text);
+  background: radial-gradient(1200px 700px at 15% 0%, rgba(37, 99, 235, .10), transparent 55%),
+              radial-gradient(900px 600px at 85% 5%, rgba(124, 58, 237, .10), transparent 55%),
+              var(--nok-bg);
+}
+
+/* Smooth theme transition */
+html.nok-theme-anim *{
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+/* Bootstrap harmony */
+.border-top, .border-bottom, .border{
+  border-color: var(--nok-border) !important;
+}
+.text-muted{ color: var(--nok-muted) !important; }
+
+/* Navbar */
+#nokNavbar{
+  background: color-mix(in srgb, var(--nok-bg) 78%, transparent);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+}
+#nokNavbar.nok-scrolled{
+  box-shadow: var(--nok-shadow-soft);
+}
+.navbar .nav-link{ color: var(--nok-text); opacity: .85; }
+.navbar .nav-link:hover{ opacity: 1; }
+
+/* Brand mark (pear) */
+.nok-pear{ width: 34px; height: 34px; filter: drop-shadow(0 10px 18px var(--nok-glow)); }
+.nok-pear .fill{ fill: url(#nokGrad); }
+.nok-pear .stroke{ stroke: rgba(255,255,255,.65); }
+html[data-theme="dark"] .nok-pear .stroke{ stroke: rgba(255,255,255,.35); }
+
+/* Cards & surfaces */
+.card{
+  border: 1px solid var(--nok-border);
+  border-radius: var(--nok-radius);
+  background: color-mix(in srgb, var(--nok-surface) 88%, transparent);
+  box-shadow: var(--nok-shadow-soft);
+}
+
+.glass{
+  background: color-mix(in srgb, var(--nok-surface) 84%, transparent);
+  border: 1px solid var(--nok-border);
+  border-radius: var(--nok-radius);
+  box-shadow: var(--nok-shadow);
+}
+
+/* Inputs */
+.form-control, .form-select{
+  border-radius: 14px;
+  border: 1px solid var(--nok-border);
+  background: color-mix(in srgb, var(--nok-bg) 88%, transparent);
+  color: var(--nok-text);
+}
+.form-control:focus, .form-select:focus{
+  border-color: rgba(37,99,235,.5);
+  box-shadow: var(--nok-ring);
+}
+
+/* Dropdown (language) */
+.dropdown-menu{
+  border-radius: 14px;
+  border: 1px solid var(--nok-border);
+  background: color-mix(in srgb, var(--nok-surface) 92%, transparent);
+  box-shadow: var(--nok-shadow);
+}
+.dropdown-item{ color: var(--nok-text); }
+.dropdown-item:hover{ background: color-mix(in srgb, var(--nok-primary) 10%, transparent); }
+
+/* Buttons */
+.btn{
+  border-radius: 999px;
+}
+.btn-primary{
+  background: linear-gradient(135deg, var(--nok-primary), var(--nok-primary-2));
+  border: 0;
+  box-shadow: 0 12px 28px var(--nok-glow);
+}
+.btn-primary:hover{ transform: translateY(-1px); }
+.btn-outline-primary{ border-color: color-mix(in srgb, var(--nok-primary) 45%, transparent); }
+.btn-outline-secondary{ border-color: var(--nok-border); color: var(--nok-text); }
+.btn-outline-secondary:hover{ background: color-mix(in srgb, var(--nok-surface) 75%, transparent); }
+
+/* Hero sparkle */
+.hero{
+  position: relative;
+  overflow: hidden;
+}
+.hero::before, .hero::after{
+  content:"";
+  position: absolute;
+  inset: -120px;
+  background:
+    radial-gradient(600px 300px at 15% 20%, rgba(37,99,235,.16), transparent 60%),
+    radial-gradient(540px 260px at 85% 20%, rgba(124,58,237,.16), transparent 60%);
+  opacity: 1;
+  pointer-events: none;
+  animation: floaty 10s ease-in-out infinite;
+}
+.hero::after{ animation-duration: 14s; opacity: .65; }
+@keyframes floaty{
+  0%{ transform: translate3d(0,0,0) scale(1); }
+  50%{ transform: translate3d(0,10px,0) scale(1.02); }
+  100%{ transform: translate3d(0,0,0) scale(1); }
+}
+
+/* Reveal animation */
+.nok-reveal{ opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.nok-reveal.is-visible{ opacity: 1; transform: translateY(0); }
+
+/* Fix "white block" during overscroll */
+html[data-theme="dark"], html[data-theme="dark"] body{ background-color: var(--nok-bg); }
+
+/* Alerts close button visibility */
+.btn-close{ filter: invert(.1); }
+html[data-theme="dark"] .btn-close{ filter: invert(1); }

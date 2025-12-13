@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
+  <div>
+    <h2 class="mb-1 nok-reveal">{% trans "AI Teacher" %}</h2>
+    <div class="text-muted small nok-reveal">
+      {% trans "Ask a question. You’ll get a calm step-by-step explanation + a quick check question." %}
+    </div>
+  </div>
+  <div class="small text-muted nok-reveal">
+    {% trans "Language:" %} <span class="fw-semibold">{{ lang|upper }}</span>
+  </div>
+</div>
+
+{% if error %}
+  <div class="alert alert-warning small">{{ error }}</div>
+{% endif %}
+
+<div class="row g-3">
+  <div class="col-lg-5">
+    <div class="nok-card p-3 p-md-4 nok-reveal">
+      <div class="small text-muted mb-2">
+        {% trans "Quick prompts" %}
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-secondary" type="button" data-prompt="{% trans 'Explain this topic like I am 16' %}">{% trans "Explain simply" %}</button>
+        <button class="btn btn-sm btn-outline-secondary" type="button" data-prompt="{% trans 'Give me 3 practice questions and answers' %}">{% trans "Practice" %}</button>
+        <button class="btn btn-sm btn-outline-secondary" type="button" data-prompt="{% trans 'Make a short study plan for 7 days' %}">{% trans "Study plan" %}</button>
+      </div>
+
+      <hr class="my-3">
+
+      <form method="post" class="vstack gap-2" id="aiForm">
+        {% csrf_token %}
+        <label class="form-label small mb-0">{% trans "Your question" %}</label>
+        <textarea class="form-control" rows="5" name="question" id="questionBox" placeholder="{% trans 'Type your question…' %}">{{ question }}</textarea>
+        <button class="btn btn-primary">{% trans "Ask" %}</button>
+        <div class="small text-muted">
+          {% trans "Tip:" %} {% trans "One clear question works best. If needed, add context or an example." %}
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="nok-card p-3 p-md-4 nok-reveal" style="min-height: 420px;">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="small text-muted">{% trans "Conversation" %}</div>
+        <form method="post" action="" class="d-none" id="clearForm">{% csrf_token %}</form>
+      </div>
+
+      <div class="vstack gap-2" style="max-height: 520px; overflow:auto;">
+        {% for m in history %}
+          {% if m.role == 'user' %}
+            <div class="ms-auto p-2 px-3 rounded-4 bg-body-tertiary" style="max-width: 92%;">
+              <div class="small fw-semibold mb-1">{% trans "You" %}</div>
+              <div class="small">{{ m.content }}</div>
+            </div>
+          {% else %}
+            <div class="me-auto p-2 px-3 rounded-4 border" style="max-width: 92%; border-color: var(--border) !important;">
+              <div class="small fw-semibold mb-1">{% trans "Teacher" %}</div>
+              <div class="small" style="white-space: pre-wrap;">{{ m.content }}</div>
+            </div>
+          {% endif %}
+        {% empty %}
+          <div class="text-muted small">{% trans "No messages yet. Ask your first question!" %}</div>
+        {% endfor %}
+
+        {% if answer and not history %}
+          <div class="me-auto p-2 px-3 rounded-4 border" style="max-width: 92%; border-color: var(--border) !important;">
+            <div class="small fw-semibold mb-1">{% trans "Teacher" %}</div>
+            <div class="small" style="white-space: pre-wrap;">{{ answer }}</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const box = document.getElementById('questionBox');
+  document.querySelectorAll('[data-prompt]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const p = btn.getAttribute('data-prompt') || '';
+      if(!box) return;
+      box.value = (box.value ? (box.value + "\n\n") : "") + p;
+      box.focus();
+    });
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load i18n form_extras %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="nok-card p-4 p-md-5">
+      <h1 class="h4 fw-semibold mb-1 nok-reveal">{% trans "Join for free" %}</h1>
+      <p class="text-muted small mb-4 nok-reveal">{% trans "Create your account. We’ll send a verification link to your email." %}</p>
+
+      <form method="post" class="vstack gap-3">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger small mb-0">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label small">{% trans "Username" %}</label>
+            {{ form.username|add_class:"form-control" }}
+            {% if form.username.errors %}<div class="text-danger small mt-1">{{ form.username.errors }}</div>{% endif %}
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label small">{% trans "Email" %}</label>
+            {{ form.email|add_class:"form-control" }}
+            {% if form.email.errors %}<div class="text-danger small mt-1">{{ form.email.errors }}</div>{% endif %}
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label small">{% trans "Account type" %}</label>
+          {{ form.role|add_class:"form-select" }}
+          {% if form.role.errors %}<div class="text-danger small mt-1">{{ form.role.errors }}</div>{% endif %}
+          <div class="form-text">
+            {% trans "Choose Student or Teacher. CEO accounts are created by the administrator." %}
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label small">{% trans "Password" %}</label>
+            {{ form.password1|add_class:"form-control" }}
+            {% if form.password1.errors %}<div class="text-danger small mt-1">{{ form.password1.errors }}</div>{% endif %}
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label small">{% trans "Repeat password" %}</label>
+            {{ form.password2|add_class:"form-control" }}
+            {% if form.password2.errors %}<div class="text-danger small mt-1">{{ form.password2.errors }}</div>{% endif %}
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label small">{% trans "Referral code" %} <span class="text-muted">({% trans "optional" %})</span></label>
+          {{ form.referral_code|add_class:"form-control" }}
+          {% if form.referral_code.errors %}<div class="text-danger small mt-1">{{ form.referral_code.errors }}</div>{% endif %}
+        </div>
+
+        <button class="btn btn-primary w-100">{% trans "Create account" %}</button>
+
+        <div class="small text-muted">
+          {% trans "By creating an account you agree to use N.O.K respectfully and for learning." %}
+        </div>
+
+        <div class="small mt-2">
+          <a href="{% url 'accounts:login' %}">{% trans "Already have an account? Sign in" %}</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
