@@ -172,3 +172,10 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 
 # Show/enable Google OAuth button only when creds exist
 SOCIALACCOUNT_GOOGLE_ENABLED = bool(os.environ.get('GOOGLE_CLIENT_ID') and os.environ.get('GOOGLE_CLIENT_SECRET'))
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://n-o-k.onrender.com",
+]
+if os.environ.get("DJANGO_DEBUG", "False") == "True":
+    CSRF_TRUSTED_ORIGINS.append("http://localhost:8000")
+    CSRF_TRUSTED_ORIGINS.append("http://127.0.0.1:8000")
