@@ -111,12 +111,17 @@ def _send_verification_email(request, user: User) -> str:
         + _("If you did not create an account, you can ignore this email.")
     )
 
-    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", None)
+    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", None) or getattr(settings, "EMAIL_HOST_USER", "")
 
-    # ✅ Never let email sending crash the request (Render SMTP often not configured)
     if user.email:
         try:
-            send_mail(subject, message, from_email, [user.email], fail_silently=True)
+            send_mail(
+                subject,
+                message,
+                from_email,
+                [user.email],
+                fail_silently=True,  # don't crash prod
+            )
         except Exception:
             pass
 
